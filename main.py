@@ -21,7 +21,7 @@ class ToDoWindow(QMainWindow):
 
 if __name__ == "__main__":
     db_app = db
-    to_do = QApplication(sys.argv)
+    to_do = QApplication([])
     main_window = ToDoWindow()
     main_window.show()
     main_window.raise_()
