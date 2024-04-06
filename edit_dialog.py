@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from db_controller import *
 from datetime import datetime
 
+
 class EditDialog(QDialog):
 
     def __init__(self):
@@ -60,10 +61,10 @@ class EditTaskDialog(EditDialog):
         self.task_details = self.get_task_details()
 
         self.description_line_edit.setText(self.task_details[0][1])
-        if self.task_details[0][2] == None:
+        if self.task_details[0][2] is None:
             self.no_deadline_checkbox.setChecked(True)
             self.deadline_calendar_widget.setEnabled(False)
-        else: 
+        else:
             self.deadline_calendar_widget.setSelectedDate(QDate.fromString(self.task_details[0][2], "yyyy-MM-dd"))
 
         self.project_assign_label = QLabel("Assign to Project")
@@ -98,7 +99,7 @@ class EditTaskDialog(EditDialog):
     def get_project_list(self):
         project_list = []
         for entry in self.controller.get_all_projects():
-            project_list.append(str(entry[0])+": "+entry[1])
+            project_list.append(str(entry[0]) + ": " + entry[1])
         return project_list
 
     def edit_task(self):
@@ -111,13 +112,14 @@ class EditTaskDialog(EditDialog):
             else:
                 deadline = self.deadline_calendar_widget.selectedDate().toPyDate()
             self.controller.set_task_deadline(self.task_id, deadline)
-        if self.project_assign_combobox.currentIndex() != self.current_index:        
+        if self.project_assign_combobox.currentIndex() != self.current_index:
             if self.project_assign_combobox.currentText() == "None":
                 project_id = None
             else:
                 project_id = int(self.project_assign_combobox.currentText()[0])
             self.controller.assign_task_to_project(self.task_id, project_id)
         self.close()
+
 
 class EditProjectDialog(EditDialog):
 
@@ -130,12 +132,12 @@ class EditProjectDialog(EditDialog):
         self.project_details = self.get_project_details()
 
         self.description_line_edit.setText(self.project_details[0][1])
-        if self.project_details[0][2] == None:
+        if self.project_details[0][2] is None:
             self.no_deadline_checkbox.setChecked(True)
             self.deadline_calendar_widget.setEnabled(False)
         else:
             self.deadline_calendar_widget.setSelectedDate(QDate.fromString(self.project_details[0][2], "yyyy-MM-dd"))
-        
+
         self.edit_project_layout = QVBoxLayout()
         self.edit_project_layout.addLayout(self.description_deadline_layout)
         self.edit_project_layout.addLayout(self.edit_button_layout)
@@ -159,5 +161,3 @@ class EditProjectDialog(EditDialog):
                 deadline = self.deadline_calendar_widget.selectedDate().toPyDate()
             self.controller.set_project_deadline(self.project_id, deadline)
         self.close()
-
-

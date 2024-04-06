@@ -1,17 +1,8 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-
-from db_controller import *
 from radio_button_widget import *
-from table_widget import *
-from add_new_dialog import *
-from mark_complete_dialog import *
-from edit_dialog import *
-from delete_dialog import *
 from project_tasks_dialog import *
 
-class TaskProjectTabs(QWidget):
 
+class TaskProjectTabs(QWidget):
     def __init__(self):
         super().__init__()
         self.controller = DbController("to_do.db")
@@ -232,10 +223,3 @@ class TaskProjectTabs(QWidget):
         project_tasks_dialog = ProjectTasksDialog(project_id)
         project_tasks_dialog.exec_()
         self.populate_projects_table()
-
-
-
-
-
-
-

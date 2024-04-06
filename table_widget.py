@@ -1,7 +1,5 @@
-from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-
-from datetime import datetime
+from PyQt5.QtWidgets import *
 
 from db_controller import *
 
@@ -22,25 +20,25 @@ class TableWidget(QTableWidget):
         else:
             row = 0
             for entry in item_list:
-                if entry[4] == None:
+                if entry[4] is None:
                     active = True
                 else:
                     active = False
-                self.setRowCount(row+1)
+                self.setRowCount(row + 1)
                 column = 0
                 for item in entry:
-                    if item == None:
+                    if item is None:
                         item = ""
                     elif column == 3 or column == 4:
                         item = str(item[:-7])
                     table_item = QTableWidgetItem(str(item))
                     if column == 2 and item != "" and active:
                         if self.check_overdue(item):
-                            table_item.setForeground(QColor(255,0,0))
+                            table_item.setForeground(QColor(255, 0, 0))
                     self.setItem(row, column, table_item)
                     column += 1
                 row += 1
-        
+
     def check_completed(self):
         return self.item(self.currentRow(), 4).text() != ""
 
@@ -52,7 +50,8 @@ class TableWidget(QTableWidget):
         if deadline_date <= datetime.today():
             return True
         return False
-        
+
+
 class TasksTable(TableWidget):
 
     def __init__(self):
@@ -76,6 +75,7 @@ class TasksTable(TableWidget):
             return int(self.item(self.currentRow(), 5).text())
         return False
 
+
 class ProjectTasksTable(TasksTable):
 
     def __init__(self, project_id):
@@ -90,7 +90,7 @@ class ProjectsTable(TableWidget):
 
     def __init__(self):
         super().__init__()
-        
+
         self.setColumnCount(5)
         self.setHorizontalHeaderLabels(["ProjectID", "Decription", "Deadline", "Created", "Completed"])
 

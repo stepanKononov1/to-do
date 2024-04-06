@@ -38,6 +38,7 @@ class DeleteTaskDialog(QDialog):
         delete_task_confirmation.exec_()
         self.close()
 
+
 class DeleteProjectDialog(QDialog):
 
     def __init__(self, project_id):
@@ -83,4 +84,3 @@ class DeleteProjectDialog(QDialog):
         delete_project_only_confirmation.setInformativeText("Associated tasks are no longer assigned to any project")
         delete_project_only_confirmation.exec_()
         self.close()
-

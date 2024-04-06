@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 
 from db_controller import *
 
+
 class MarkCompleteDialog(QDialog):
 
     def __init__(self, project_id):
@@ -11,7 +12,7 @@ class MarkCompleteDialog(QDialog):
 
         self.description = self.get_project_description()
 
-        self.project_id_label = QLabel("Project ID: "+str(self.project_id))
+        self.project_id_label = QLabel("Project ID: " + str(self.project_id))
         self.project_description_label = QLabel(self.description)
 
         self.project_info_layout = QHBoxLayout()
@@ -29,6 +30,7 @@ class MarkCompleteDialog(QDialog):
 
     def get_project_description(self):
         return self.controller.get_single_project(self.project_id)[0][1]
+
 
 class MarkProjectCompleteDialog(MarkCompleteDialog):
 
@@ -53,6 +55,7 @@ class MarkProjectCompleteDialog(MarkCompleteDialog):
     def mark_project_completed(self):
         self.controller.mark_project_completed(self.project_id)
         self.close()
+
 
 class MarkProjectTasksCompleteDialog(MarkCompleteDialog):
 

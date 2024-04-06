@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import *
 
+
 class RadioButtonWidget(QWidget):
     def __init__(self, button_list):
         super().__init__()
@@ -10,7 +11,7 @@ class RadioButtonWidget(QWidget):
         for item in button_list:
             self.radio_button_list.append(QRadioButton(item))
 
-        #set first button checked as default
+        # set first button checked as default
         self.radio_button_list[0].setChecked(True)
 
         self.radio_button_layout = QHBoxLayout()

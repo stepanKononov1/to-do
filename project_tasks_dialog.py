@@ -15,7 +15,7 @@ class ProjectTasksDialog(QDialog):
         self.controller = DbController("to_do.db")
 
         self.setWindowTitle("Project Tasks")
-        
+
         self.project_label = QLabel("<b>Project:</b>")
         self.tasks_label = QLabel("<b>Tasks:</b>")
 
@@ -72,11 +72,11 @@ class ProjectTasksDialog(QDialog):
         project_details = []
         controller_results = self.controller.get_single_project(self.project_id)
         for item in controller_results[0][:3]:
-            if item == None:
+            if item is None:
                 item = ""
             project_details.append(str(item))
         for item in controller_results[0][3:]:
-            if item == None:
+            if item is None:
                 item = ""
                 project_details.append(item)
             else:

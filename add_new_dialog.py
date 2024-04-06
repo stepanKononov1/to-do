@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from db_controller import *
 from datetime import datetime
 
+
 class AddNewDialog(QDialog):
 
     def __init__(self):
@@ -46,6 +47,7 @@ class AddNewDialog(QDialog):
         else:
             self.deadline_calendar_widget.setEnabled(True)
 
+
 class NewTaskDialog(AddNewDialog):
 
     def __init__(self):
@@ -74,7 +76,7 @@ class NewTaskDialog(AddNewDialog):
     def get_project_list(self):
         project_list = []
         for entry in self.controller.get_all_projects():
-            project_list.append(str(entry[0])+": "+entry[1])
+            project_list.append(str(entry[0]) + ": " + entry[1])
         return project_list
 
     def add_new_task(self):
@@ -89,6 +91,7 @@ class NewTaskDialog(AddNewDialog):
             project_id = int(self.project_assign_combobox.currentText()[0])
         self.controller.add_task(description, deadline, project_id)
         self.close()
+
 
 class NewProjectTaskDialog(NewTaskDialog):
 
@@ -107,6 +110,7 @@ class NewProjectTaskDialog(NewTaskDialog):
             deadline = self.deadline_calendar_widget.selectedDate().toPyDate()
         self.controller.add_task(description, deadline, self.project_id)
         self.close()
+
 
 class NewProjectDialog(AddNewDialog):
 
@@ -131,5 +135,3 @@ class NewProjectDialog(AddNewDialog):
             deadline = self.deadline_calendar_widget.selectedDate().toPyDate()
         self.controller.add_project(description, deadline)
         self.close()
-
-
