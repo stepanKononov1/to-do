@@ -84,6 +84,7 @@ class EditTaskDialog(EditDialog):
 
         self.setLayout(self.edit_task_layout)
 
+        # idk wt d
         self.project_assign_combobox.activated.connect(self.enable_save_button)
         self.save_edit_button.clicked.connect(self.edit_task)
 
