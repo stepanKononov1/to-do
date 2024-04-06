@@ -58,7 +58,6 @@ class NewTaskDialog(AddNewDialog):
         self.project_assign_label = QLabel("Assign to Project")
         self.project_assign_combobox = QComboBox()
         self.project_assign_combobox.addItem("None")
-        self.project_assign_combobox.addItems(self.get_project_list())
 
         self.project_assign_layout = QVBoxLayout()
         self.project_assign_layout.addWidget(self.project_assign_label)
@@ -72,12 +71,6 @@ class NewTaskDialog(AddNewDialog):
         self.setLayout(self.new_task_layout)
 
         self.save_new_button.clicked.connect(self.add_new_task)
-
-    def get_project_list(self):
-        project_list = []
-        for entry in self.controller.get_all_projects():
-            project_list.append(str(entry[0]) + ": " + entry[1])
-        return project_list
 
     def add_new_task(self):
         description = self.description_line_edit.text()

@@ -68,37 +68,3 @@ class TasksTable(TableWidget):
         else:
             tasks = self.controller.get_all_tasks()
         return tasks
-
-    def get_task_project_id(self):
-        project_id = self.item(self.currentRow(), 5).text()
-        if project_id != "":
-            return int(self.item(self.currentRow(), 5).text())
-        return False
-
-
-class ProjectTasksTable(TasksTable):
-
-    def __init__(self, project_id):
-        super().__init__()
-        self.project_id = project_id
-
-    def get_project_tasks(self):
-        return self.controller.get_project_tasks(self.project_id)
-
-
-class ProjectsTable(TableWidget):
-
-    def __init__(self):
-        super().__init__()
-
-        self.setColumnCount(5)
-        self.setHorizontalHeaderLabels(["ProjectID", "Decription", "Deadline", "Created", "Completed"])
-
-    def get_projects(self, project_type):
-        if project_type == 0:
-            projects = self.controller.get_active_projects()
-        elif project_type == 1:
-            projects = self.controller.get_completed_projects()
-        else:
-            projects = self.controller.get_all_projects()
-        return projects

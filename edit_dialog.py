@@ -70,12 +70,7 @@ class EditTaskDialog(EditDialog):
         self.project_assign_label = QLabel("Assign to Project")
         self.project_assign_combobox = QComboBox()
         self.project_assign_combobox.addItem("None")
-        project_list = self.get_project_list()
         self.current_index = 0
-        for project in project_list:
-            self.project_assign_combobox.addItem(project)
-            if int(project[0]) == self.task_details[0][5]:
-                self.current_index = project_list.index(project) + 1
         self.project_assign_combobox.setCurrentIndex(self.current_index)
 
         self.project_assign_layout = QVBoxLayout()
@@ -95,12 +90,6 @@ class EditTaskDialog(EditDialog):
     def get_task_details(self):
         task_details = self.controller.get_single_task(self.task_id)
         return task_details
-
-    def get_project_list(self):
-        project_list = []
-        for entry in self.controller.get_all_projects():
-            project_list.append(str(entry[0]) + ": " + entry[1])
-        return project_list
 
     def edit_task(self):
         if self.description_line_edit.textEdited:
