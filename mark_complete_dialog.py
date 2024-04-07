@@ -28,9 +28,6 @@ class MarkCompleteDialog(QDialog):
 
         self.no_button.clicked.connect(self.close)
 
-    def get_project_description(self):
-        return self.controller.get_single_project(self.project_id)[0][1]
-
 
 class MarkProjectCompleteDialog(MarkCompleteDialog):
 
@@ -52,10 +49,6 @@ class MarkProjectCompleteDialog(MarkCompleteDialog):
 
         self.yes_button.clicked.connect(self.mark_project_completed)
 
-    def mark_project_completed(self):
-        self.controller.mark_project_completed(self.project_id)
-        self.close()
-
 
 class MarkProjectTasksCompleteDialog(MarkCompleteDialog):
 
@@ -76,7 +69,3 @@ class MarkProjectTasksCompleteDialog(MarkCompleteDialog):
         self.setLayout(self.mark_project_tasks_complete_layout)
 
         self.yes_button.clicked.connect(self.mark_project_tasks_completed)
-
-    def mark_project_tasks_completed(self):
-        self.controller.mark_project_tasks_completed(self.project_id)
-        self.close()

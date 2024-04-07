@@ -4,7 +4,6 @@ from add_new_dialog import NewTaskDialog
 from db_controller import DbController
 from delete_dialog import DeleteTaskDialog
 from edit_dialog import EditTaskDialog
-from mark_complete_dialog import MarkProjectCompleteDialog
 from radio_button_widget import *
 from table_widget import TasksTable
 

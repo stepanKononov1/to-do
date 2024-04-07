@@ -1,5 +1,3 @@
-import sys
-
 from tab_widget import *
 from db_creator import db
 

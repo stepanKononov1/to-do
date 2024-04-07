@@ -78,53 +78,5 @@ class NewTaskDialog(AddNewDialog):
             deadline = None
         else:
             deadline = self.deadline_calendar_widget.selectedDate().toPyDate()
-        if self.project_assign_combobox.currentText() == "None":
-            project_id = None
-        else:
-            project_id = int(self.project_assign_combobox.currentText()[0])
-        self.controller.add_task(description, deadline, project_id)
-        self.close()
-
-
-class NewProjectTaskDialog(NewTaskDialog):
-
-    def __init__(self, project_id):
-        super().__init__()
-        self.project_id = project_id
-
-        self.project_assign_label.hide()
-        self.project_assign_combobox.hide()
-
-    def add_new_task(self):
-        description = self.description_line_edit.text()
-        if self.no_deadline_checkbox.isChecked():
-            deadline = None
-        else:
-            deadline = self.deadline_calendar_widget.selectedDate().toPyDate()
-        self.controller.add_task(description, deadline, self.project_id)
-        self.close()
-
-
-class NewProjectDialog(AddNewDialog):
-
-    def __init__(self):
-        super().__init__()
-
-        self.setWindowTitle("New Project")
-
-        self.new_project_layout = QVBoxLayout()
-        self.new_project_layout.addLayout(self.description_deadline_layout)
-        self.new_project_layout.addLayout(self.add_new_button_layout)
-
-        self.setLayout(self.new_project_layout)
-
-        self.save_new_button.clicked.connect(self.add_new_project)
-
-    def add_new_project(self):
-        description = self.description_line_edit.text()
-        if self.no_deadline_checkbox.isChecked():
-            deadline = None
-        else:
-            deadline = self.deadline_calendar_widget.selectedDate().toPyDate()
-        self.controller.add_project(description, deadline)
+        self.controller.add_task(description=description, deadline=deadline)
         self.close()

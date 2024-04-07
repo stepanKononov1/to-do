@@ -11,32 +11,38 @@ class Database:
     Deadline date,
     Created timestamp,
     Completed timestamp,
-    ProjectID integer,
-    PRIMARY KEY(TaskID),
-    FOREIGN KEY(ProjectID) REFERENCES Projects(ProjectID)
-    );
-    CREATE TABLE IF NOT EXISTS Edu_deadlines (
-    pk INTEGER NOT NULL UNIQUE,
-    course INTEGER,
-    semester INTEGER,
-    IC_semester_deadline TEXT,
-    PRIMARY KEY (pk AUTOINCREMENT)
-    );
-    CREATE TABLE IF NOT EXISTS Edu_semester_data (
-    id INTEGER NOT NULL UNIQUE,
-    Edu_deadline_pk	INTEGER,
-    subject	TEXT,
-    max_hours INTEGER,
-    PRIMARY KEY(id AUTOINCREMENT)
-    );
-    CREATE TABLE Edu_subjects (
-    pk INTEGER,
-    subject TEXT,
-    topic TEXT UNIQUE,
-    hours INTEGER,
-    PRIMARY KEY(pk AUTOINCREMENT)
+    ProjectID text,
+    PRIMARY KEY(TaskID)
     );
     """
+    cursor.execute(sql)
+    sql = """
+    CREATE TABLE IF NOT EXISTS "_Semesters" (
+    "semester"	INTEGER,
+    "course"	INTEGER,
+    "deadline"	TEXT,
+    PRIMARY KEY("semester")
+    )
+    """
+    cursor.execute(sql)
+    sql = """
+    CREATE TABLE IF NOT EXISTS "_Subjects" (
+    "subject_name_uniq"	TEXT,
+    "semester"	INTEGER,
+    PRIMARY KEY("subject_name_uniq")
+    )
+    """
+    cursor.execute(sql)
+    sql = """
+    CREATE TABLE IF NOT EXISTS "_Topics" (
+    "pk"	INTEGER,
+    "topic_subject"	TEXT,
+    "topic_name"	TEXT,
+    "max_hours"	INTEGER,
+    PRIMARY KEY("pk")
+    )
+    """
+    cursor.execute(sql)
     connection.close()
 
 

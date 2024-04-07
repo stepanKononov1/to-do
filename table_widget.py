@@ -1,6 +1,6 @@
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
+from datetime import datetime
 from db_controller import *
 
 
@@ -46,8 +46,8 @@ class TableWidget(QTableWidget):
         return int(self.item(self.currentRow(), 0).text())
 
     def check_overdue(self, deadline):
-        deadline_date = datetime.strptime(deadline, '%Y-%m-%d')
-        if deadline_date <= datetime.today():
+        deadline_date = datetime.datetime.strptime(deadline, '%Y-%m-%d')
+        if deadline_date <= datetime.datetime.today():
             return True
         return False
 

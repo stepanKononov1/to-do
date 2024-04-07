@@ -68,19 +68,3 @@ class DeleteProjectDialog(QDialog):
         self.delete_project_tasks_button.clicked.connect(self.delete_project_and_tasks)
         self.delete_project_only_button.clicked.connect(self.delete_project_only)
         self.delete_project_cancel_button.clicked.connect(self.close)
-
-    def delete_project_and_tasks(self):
-        self.controller.delete_project_and_tasks(self.project_id)
-        delete_project_tasks_confirmation = QMessageBox()
-        delete_project_tasks_confirmation.setWindowTitle("Project deleted")
-        delete_project_tasks_confirmation.setInformativeText("Project and associated tasks deleted")
-        delete_project_tasks_confirmation.exec_()
-        self.close()
-
-    def delete_project_only(self):
-        self.controller.delete_project_only(self.project_id)
-        delete_project_only_confirmation = QMessageBox()
-        delete_project_only_confirmation.setWindowTitle("Project deleted")
-        delete_project_only_confirmation.setInformativeText("Associated tasks are no longer assigned to any project")
-        delete_project_only_confirmation.exec_()
-        self.close()
