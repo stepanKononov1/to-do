@@ -29,13 +29,7 @@ class Sorter:
         for deadline, date_start in zip(deadlines, date_starts):
             req_subjects = [subject for subject in subjects if subject[1] == deadline]
             if not req_subjects:
-                date_start = deadline
-                print('skip')
                 continue
-            print('unskip')
-            print(date_start)
-            print(deadline)
-            print(req_subjects)
             semester = req_subjects[0][2]
             periods = split_delta_time_to_weeks(date_start, deadline)
             weeks_total = len(periods)
