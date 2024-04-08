@@ -1,5 +1,6 @@
 from tab_widget import *
 from db_creator import db
+from sorting_feature import sorter
 
 
 class ToDoWindow(QMainWindow):
@@ -18,6 +19,7 @@ class ToDoWindow(QMainWindow):
 
 if __name__ == "__main__":
     db_app = db
+    sorter_app = sorter
     to_do = QApplication([])
     main_window = ToDoWindow()
     main_window.show()

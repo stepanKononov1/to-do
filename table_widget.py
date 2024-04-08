@@ -57,8 +57,8 @@ class TasksTable(TableWidget):
     def __init__(self):
         super().__init__()
 
-        self.setColumnCount(6)
-        self.setHorizontalHeaderLabels(["TaskID", "Decription", "Deadline", "Created", "Completed", "ProjectID"])
+        self.setColumnCount(5)
+        self.setHorizontalHeaderLabels(["TaskID", "Decription", "Deadline", "Created", "Completed"])
 
     def get_tasks(self, task_type):
         if task_type == 0:

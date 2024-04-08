@@ -108,6 +108,18 @@ class DbController:
         except:
             return
 
+    def get_all_date_starts(self):
+        sql = """
+        SELECT start
+        FROM _Semesters
+        """
+        try:
+            results = [x[0] for x in self.select_query(sql)]
+            results = [datetime.datetime.strptime(subject, '%d.%m.%Y') for subject in results]
+            return results
+        except:
+            return
+
     def get_topics(self, topic_subject):
         sql = """
         SELECT topic_subject, topic_name, max_hours

@@ -20,6 +20,7 @@ class Database:
     CREATE TABLE IF NOT EXISTS "_Semesters" (
     "semester"	INTEGER,
     "course"	INTEGER,
+    "start"	    TEXT,
     "deadline"	TEXT,
     PRIMARY KEY("semester")
     )
