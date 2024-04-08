@@ -119,3 +119,11 @@ class DbController:
             return results
         except:
             return
+
+    def get_state(self):
+        sql = """SELECT * FROM Tasks"""
+        results = self.select_query(sql=sql)
+        if results:
+            return True
+        else:
+            return False
