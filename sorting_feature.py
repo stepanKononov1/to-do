@@ -30,12 +30,8 @@ class Sorter:
             req_subjects = [subject for subject in subjects if subject[1] == deadline]
             if not req_subjects:
                 continue
-            semester = req_subjects[0][2]
             periods = split_delta_time_to_weeks(date_start, deadline)
             weeks_total = len(periods)
-            load = db.get_all_sum_hours_semester(semester)
-            avg_load_per_period = int(load / weeks_total) + 1
-            print(f'avg: {avg_load_per_period}\nload: {load}\nweeks: {weeks_total}')
             period_topics = []
             for subject in req_subjects:
                 subject_name = subject[0]
@@ -64,7 +60,6 @@ class Sorter:
                     deadline, max_hours = period_topic[0], period_topic[3]
                     if deadline == period.date():
                         total_hours += max_hours
-                print(total_hours)
             period_topics.sort(key=lambda x: x[0])
             [db.add_task(description=f'{period[1]}: {period[2]}', deadline=period[0])
              for period in period_topics]
